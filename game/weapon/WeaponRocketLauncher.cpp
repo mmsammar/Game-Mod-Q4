@@ -581,3 +581,11 @@ stateResult_t rvWeaponRocketLauncher::Frame_AddToClip ( const stateParms_t& parm
 	return SRESULT_OK;
 }
 
+//If I call AddToClip() and pass it ClipSize(), would it reload the entire clip every time? In that case, would I be able to empty the clip in one go? If so, how?
+//Going down AddToClip() rabbithole, takes me to Weapon.cpp, then Player.cpp because amount of ammo remaining is stored in player inventory? Maybe I can manipulate the ammo from the player to give rocket more ammo
+//If i give rocket hella ammo, change fire rate and reload rate, dumb large clip size, pass clip_size in AddToClip() - maybe I can simulate rapid fire and empty the clip of rockets hella quick
+//Alternative method: checked Weapon.cpp, found variable values like clipsize and and ammorequired. Setting clipsize to 0 means no reload (?) and setting ammorequired to 0 means weapon doesn't need ammo (?)
+//maybe I can use this to replicate the effect I want - will try and mess with them in def file
+//Update: following initial test changing above def values, I've found that I can hold down fire and continue to shoot, no clip, no ammo 
+// - fire rate leaves something to be desired but it has the intended sustained fire effect - also maybe I need another place to put these notes LOL I'll worry about it later
+//HOLY SHIT IT WORKED !!! CHANGED firerate VARIABLE IN DEF FILE TO SAME VALUE AS MACHINEGUN AND NOW I HAVE UNLIMITED RAPID FIRE ROCKETS 
